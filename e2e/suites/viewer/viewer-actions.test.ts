@@ -209,7 +209,7 @@ describe('Viewer actions', () => {
       expect(await viewer.isViewerOpened()).toBe(true, 'Viewer is not open');
     });
 
-    it('[C297586] Upload new version action', async () => {
+    fit('[C297586] Upload new version action', async () => {
       await dataTable.doubleClickOnRowByName(filePersonalFiles);
       await viewer.waitForViewerToOpen();
       await toolbar.clickMoreActionsUploadNewVersion();

@@ -181,7 +181,6 @@ export class ContentManagementService {
   versionUpdateDialog(node, file) {
     return this.dialogRef.open(NodeVersionsDialogComponent, {
       data: { node, file, isTypeList: false },
-      panelClass: 'adf-version-manager-dialog-panel-upload',
       width: '600px'
     });
   }

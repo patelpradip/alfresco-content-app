@@ -69,6 +69,7 @@ export class AppViewerComponent implements OnInit, OnDestroy {
   fileName: string;
   folderId: string = null;
   nodeId: string = null;
+  versionId: string = null;
   node: MinimalNodeEntryEntity;
   selection: SelectionState;
   infoDrawerOpened$: Observable<boolean>;
@@ -156,6 +157,7 @@ export class AppViewerComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       this.folderId = params.folderId;
       const { nodeId } = params;
+      this.versionId = params.versionId;
       if (nodeId) {
         this.displayNode(nodeId);
       }

@@ -33,7 +33,8 @@ import {
   ViewNodeAction,
   getCurrentFolder,
   getAppSelection,
-  FullscreenViewerAction
+  FullscreenViewerAction,
+  ViewNodeVersionAction
 } from '@alfresco/aca-shared/store';
 import {
   Router,
@@ -103,6 +104,45 @@ export class ViewerEffects {
         this.router.navigate([
           'view',
           { outlets: { viewer: [action.nodeId] } }
+        ]);
+      }
+    })
+  );
+
+  @Effect({ dispatch: false })
+  viewNodeVersion$ = this.actions$.pipe(
+    ofType<ViewNodeVersionAction>(ViewerActionTypes.ViewNodeVersion),
+    map(action => {
+      if (action.viewNodeExtras) {
+        const { location, path } = action.viewNodeExtras;
+        if (location) {
+          const navigation = this.getNavigationCommands(location);
+          this.router.navigate(
+            [
+              ...navigation,
+              { outlets: { viewer: ['view', action.nodeId, action.versionId] } }
+            ],
+            {
+              queryParams: { location }
+            }
+          );
+        }
+
+        if (path) {
+          this.router.navigate(
+            [
+              'view',
+              { outlets: { viewer: [action.nodeId, action.versionId] } }
+            ],
+            {
+              queryParams: { path }
+            }
+          );
+        }
+      } else {
+        this.router.navigate([
+          'view',
+          { outlets: { viewer: [action.nodeId, action.versionId] } }
         ]);
       }
     })

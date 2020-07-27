@@ -117,6 +117,20 @@ export const APP_ROUTES: Routes = [
                   './components/viewer/viewer.module#AppViewerModule'
               }
             ]
+          },
+          {
+            path: 'view/:nodeId/:versionId',
+            outlet: 'viewer',
+            children: [
+              {
+                path: '',
+                data: {
+                  navigateSource: 'personal-files'
+                },
+                loadChildren:
+                  './components/viewer/viewer.module#AppViewerModule'
+              }
+            ]
           }
         ]
       },
