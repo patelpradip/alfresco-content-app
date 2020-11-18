@@ -24,6 +24,7 @@
  */
 
 import { AdminActions, UserActions, SITE_VISIBILITY, SITE_ROLES, LoginPage, BrowsingPage, Utils, RepoClient } from '@alfresco/aca-testing-shared';
+import { Logger } from '@alfresco/adf-testing';
 
 describe('Favorites', () => {
   const username = `user-${Utils.random()}`;
@@ -83,11 +84,10 @@ describe('Favorites', () => {
     done();
   });
 
-  afterAll(async (done) => {
+  afterAll(async () => {
     await adminApiActions.deleteSites([siteName]);
     await userActions.deleteNodes([folderId, parentId]);
     await userActions.emptyTrashcan();
-    done();
   });
 
   it('[C280482] has the correct columns', async () => {
