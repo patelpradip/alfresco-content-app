@@ -24,7 +24,6 @@
  */
 
 import { AdminActions, UserActions, SITE_VISIBILITY, SITE_ROLES, LoginPage, BrowsingPage, Utils, RepoClient } from '@alfresco/aca-testing-shared';
-import { Logger } from '@alfresco/adf-testing';
 
 describe('Favorites', () => {
   const username = `user-${Utils.random()}`;
